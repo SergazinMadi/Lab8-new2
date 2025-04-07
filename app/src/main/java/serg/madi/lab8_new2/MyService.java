@@ -22,7 +22,7 @@ public class MyService extends Service {
     @Override
     public void onCreate() {
         Toast.makeText(this, "Service Created", Toast.LENGTH_SHORT).show();
-        soundPlayer = MediaPlayer.create(this, R.raw.song);
+        soundPlayer = MediaPlayer.create(this, R.raw.song2);
         soundPlayer.setLooping(false);
     }
 
@@ -42,9 +42,11 @@ public class MyService extends Service {
         }
 
         NotificationCompat.Builder sNotifBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_music)
+                .setSmallIcon(R.drawable.music_icon )
                 .setContentTitle("My Music Player")
-                .setContentText("Music is playing");
+                .setContentText("Music is playing")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
         Notification servNotification = sNotifBuilder.build();
         startForeground(1, servNotification);
 
