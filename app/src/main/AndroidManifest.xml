@@ -38,6 +38,9 @@
             android:exported="false"
             android:foregroundServiceType="mediaPlayback" />
 
+        <service android:name=".RandomCharacterService"
+            android:exported="false" />
+
     </application>
 
 
