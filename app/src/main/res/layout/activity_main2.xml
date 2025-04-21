@@ -13,12 +13,12 @@
         android:id="@+id/editText_randomCharacter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Random character"
-        android:enabled="false"
-        android:textSize="32sp"
-        android:gravity="center"
         android:layout_marginBottom="32dp"
-        android:inputType="text" />
+        android:enabled="false"
+        android:gravity="center"
+        android:hint="Random character"
+        android:inputType="text"
+        android:textSize="32sp" />
 
     <Button
         android:id="@+id/button_start"

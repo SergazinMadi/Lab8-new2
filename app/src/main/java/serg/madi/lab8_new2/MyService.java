@@ -22,7 +22,7 @@ public class MyService extends Service {
     @Override
     public void onCreate() {
         Toast.makeText(this, "Service Created", Toast.LENGTH_SHORT).show();
-        soundPlayer = MediaPlayer.create(this, R.raw.song);
+        soundPlayer = MediaPlayer.create(this, R.raw.aday2);
         soundPlayer.setLooping(false);
     }
 

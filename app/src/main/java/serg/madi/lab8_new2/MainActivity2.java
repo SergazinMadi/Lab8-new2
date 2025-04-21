@@ -24,13 +24,10 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        // Инициализация элементов интерфейса
         randomCharacterEditText = findViewById(R.id.editText_randomCharacter);
 
-        // Создаём BroadcastReceiver для получения данных
         broadcastReceiver = new MyBroadcastReceiver();
 
-        // Подготавливаем Intent для запуска сервиса
         serviceIntent = new Intent(getApplicationContext(), RandomCharacterService.class);
     }
 
@@ -46,17 +43,12 @@ public class MainActivity2 extends AppCompatActivity {
     }
 
 
+
     @SuppressLint("UnspecifiedRegisterReceiverFlag")
     @Override
     protected void onStart() {
         super.onStart();
         IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction("my.custom.action.tag.lab6");
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            registerReceiver(broadcastReceiver, intentFilter, Context.RECEIVER_NOT_EXPORTED);
-        } else {
-            registerReceiver(broadcastReceiver, intentFilter);
-        }
 
     }
 
@@ -64,11 +56,9 @@ public class MainActivity2 extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        // Отменяем регистрацию приёмника
         unregisterReceiver(broadcastReceiver);
     }
 
-    // Внутренний класс-приемник широковещательных сообщений
     class MyBroadcastReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -76,14 +66,11 @@ public class MainActivity2 extends AppCompatActivity {
                 char data = intent.getCharExtra("randomCharacter", '?');
                 Log.i("MyBroadcastReceiver", "Received character: " + data);
 
-                runOnUiThread(() -> {
-                    randomCharacterEditText.setText(String.valueOf(data));
-                });
+                runOnUiThread(() -> randomCharacterEditText.setText(data));
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-
     }
 }

@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat;
 public class MainActivity extends AppCompatActivity {
     private Intent serviceIntent;
     private static final int PERMISSION_REQUEST_CODE = 123;
+    private boolean isMusicServiceActive = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +63,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void nextActivity(View view) {
+        if (isMusicServiceActive) {
+            stopService(serviceIntent);
+            serviceIntent = new Intent(this, RandomCharacterService.class);
+            ContextCompat.startForegroundService(this, serviceIntent);
+        } else {
+            stopService(serviceIntent);
+            serviceIntent = new Intent(this, MyService.class);
+            ContextCompat.startForegroundService(this, serviceIntent);
+        }
+        isMusicServiceActive = !isMusicServiceActive;
         startActivity(new Intent(this, MainActivity2.class));
     }
 
